@@ -36,23 +36,28 @@ int top (int x)
     return(x);
 }
 
-void decreasing_spaces(int i, int j)
+void decreasing_spaces(int x,int i, int j)
 {
-    if (i == j) {
+    int total_margin = ((x*3)*2)-1;
+    
+    if (i == j || j == total_margin -1 - i) {
         my_putchar(42);
     } else {
         my_putchar(32);
     }
 }
 
-void dec_vertical_right(int x, int i, int j, int margin)
+void dec_vertical_interior(int x, int i, int j, int margin)
 {
+    int medium_margin = (x * 3) + (x - 2);
+    int total_margin = ((x * 3)*2) - 1;
+    
     while (i <= x) {
-        while (j < margin){
-            if (i == 0){
+        while (j < total_margin){
+            if ((i == 0 && j >= 0 && j < margin) || (i == 0 && j >= medium_margin && j <= total_margin)) {
                 my_putchar(42);
             } else {
-                decreasing_spaces(i,j);
+                decreasing_spaces(x,i,j);
             }
             j++;
         }
@@ -64,7 +69,7 @@ void dec_vertical_right(int x, int i, int j, int margin)
     }
 }
 
-void dec_vertical_left(int x, int i, int j, int margin)
+void dec_vertical_exterior(int x, int i, int j, int margin)
 {
     i = 0;
     j = x;
@@ -73,7 +78,7 @@ void dec_vertical_left(int x, int i, int j, int margin)
             if (i == x /*&& j == x + 1*/){
                 my_putchar(42);
             } else {
-                decreasing_spaces(i,j);
+                decreasing_spaces(x,i,j);
             }
             j--;
         }
@@ -97,8 +102,8 @@ int vertical_side (int x)
     int j = 0;
     int margin = (x*2)+1;
 
-    dec_vertical_right(x,i,j,margin);
-    dec_vertical_left(x,i,j,margin);
+    dec_vertical_interior(x,i,j,margin);
+    dec_vertical_exterior(x,i,j,margin);
     return(x);
 }
 
@@ -136,5 +141,5 @@ void star(int x)
 
 int main()
 {
-    star(8);
+    star(5);
 }
