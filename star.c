@@ -18,7 +18,7 @@ int top (int x)
 {
     int i = 0;
     int j = 0;
-    int margin = x*3;
+    int margin = (x*3)-1;
 
     while (i <= x-1) {
         while (j <= margin + i) {
@@ -48,7 +48,7 @@ void decreasing_spaces(int i, int j)
 void dec_vertical_right(int x, int i, int j, int margin)
 {
     while (i <= x) {
-        while (j <= margin){
+        while (j < margin){
             if (i == 0){
                 my_putchar(42);
             } else {
@@ -85,7 +85,7 @@ void dec_vertical_left(int x, int i, int j, int margin)
         j = x;
         i++;
     }
-    while (j < margin){
+    while (j < margin-1){
         my_putchar(42);
         j++;
     }
@@ -102,13 +102,39 @@ int vertical_side (int x)
     return(x);
 }
 
+int bottom(int x)
+{
+    int i = 0;
+    int j = 0;
+    int margin = (x*3);
+    int hor_margin = (x*2);
+
+    my_putchar('\n');
+    while (i <= x-1) {
+        while (j < (margin + x)) {
+            if (j == margin + (x - i)-2 || j == hor_margin + i) {
+                my_putchar(42);
+            } else {
+                my_putchar(32);
+            }
+            j++;
+        }
+        my_putchar('\n');
+        j = 0;
+        i++;
+    }
+    return(x);
+    
+}
+
 void star(int x)
 {
     top(x);
     vertical_side(x);
+    bottom(x);
 }
 
 int main()
 {
-    star(5);
+    star(8);
 }
