@@ -39,12 +39,14 @@ int top (int x)
 void decreasing_spaces(int x,int i, int j)
 {
     int total_margin = ((x*3)*2)-1;
+
     
-    if (i == j || j == total_margin -1 - i) {
+    /*if (i == j || j == total_margin -1 - i || j == total_margin + i) {
+        printf("%d",i);
         my_putchar(42);
     } else {
         my_putchar(32);
-    }
+        }*/
 }
 
 void dec_vertical_interior(int x, int i, int j, int margin)
@@ -82,7 +84,7 @@ void dec_vertical_exterior(int x, int i, int j, int margin)
             }
             j--;
         }
-        if (i != x) {
+        if (i != x) {            
             my_putchar('\n');
         } else {
             my_putchar(42);
